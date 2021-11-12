@@ -80,9 +80,11 @@ const App = () => {
       </nav>
 
       <Switch>
+
         <Route path="/pizza/order" >
           <OrderPage key={value.id} details={value} />
         </Route>
+
         <Route path ="/pizza">
           <PizzaForm 
             values={value}
@@ -91,9 +93,11 @@ const App = () => {
             errors={error}
           />
         </Route>
+
         <Route>
           <Home />
-        </Route> 
+        </Route>
+         
       </Switch>
     </div>
   );

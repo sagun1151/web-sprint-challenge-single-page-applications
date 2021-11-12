@@ -54,7 +54,7 @@ to test the functionality and performance to replicate live setting
 - [* ] Create a forked copy of this project
 - [ *] Clone your OWN version of the repository (Not Lambda's by mistake!)
 - [ *] Implement the project on the main branch, committing changes regularly
-- [ *] Push commits: `git push origin main`
+- [ *] Push commits: `git push origin main` (trying this)
 - [ *] PUSH EVERYTHING TO THE MAIN BRANCH
 
 ### Task 2: Project Requirements
