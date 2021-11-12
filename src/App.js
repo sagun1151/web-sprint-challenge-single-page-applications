@@ -39,15 +39,6 @@ const App = () => {
         .catch(err => setError({...error, [name]: err.errors[0]}))
 }
 
-const post = pizza => {
-  axios.post('https://reqres.in/api/orders')
-    .then(res => {
-      stePizzaList([res.data, ...pizzaList]);
-    })
-    .catch(err => console.error(err))
-    .finally(()=> setValue(initialList));
-}
-
 const submit = () => {
   const newPizza = {
       name: value.name,
@@ -63,7 +54,12 @@ const submit = () => {
       tomato:value.tomato,
       jalapeno:value.jalapeno
     }
-  post(newPizza)
+    axios.post('https://reqres.in/api/orders', newPizza)
+    .then(res => {
+      stePizzaList([res.data, ...pizzaList]);
+    })
+    .catch(err => console.error(err))
+    .finally(()=> setValue(initialList));
 }
 
 const change = (name, data) => {

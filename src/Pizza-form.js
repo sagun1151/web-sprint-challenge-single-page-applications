@@ -127,7 +127,7 @@ export default function PizzaForm(props){
                         onChange={onChange}
                     />
                 </label>
-                <button>Order Up</button>
+                <button id='order-button'>Order Up</button>
             </div>
         </form> 
         
