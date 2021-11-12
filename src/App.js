@@ -5,6 +5,7 @@ import schema from './formSchema'
 import * as yup from 'yup';
 import axios from "axios";
 import OrderPage from "./orderPage";
+import Home from "./Home";
 
 const initialList = {
   name: '',
@@ -89,6 +90,9 @@ const App = () => {
             change={change}
             errors={error}
           />
+        </Route>
+        <Route>
+          <Home />
         </Route> 
       </Switch>
     </div>
