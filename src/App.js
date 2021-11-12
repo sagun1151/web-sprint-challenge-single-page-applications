@@ -39,26 +39,31 @@ const App = () => {
         .catch(err => setError({...error, [name]: err.errors[0]}))
 }
 
-// const post = pizza => {
-//   axios.post('')
-// }
+const post = pizza => {
+  axios.post('https://reqres.in/api/orders')
+    .then(res => {
+      stePizzaList([res.data, ...pizzaList]);
+    })
+    .catch(err => console.error(err))
+    .finally(()=> setValue(initialList));
+}
 
 const submit = () => {
-    // const newPizza = {
-    //     name: value.name,
-    //     size: value.size,
-    //     sauce:value.sauce,
-    //     special: value.special,
-    //     bacon: value.bacon,
-    //     pepperoni: value.pepperoni,
-    //     ham:value.ham,
-    //     sausage:value.sausage,
-    //     onion:value.onion,
-    //     olives:value.olives,
-    //     tomato:value.tomato,
-    //     jalapeno:value.jalapeno
-    // }
-
+  const newPizza = {
+      name: value.name,
+      size: value.size,
+      sauce:value.sauce,
+      special: value.special,
+      bacon: value.bacon,
+      pepperoni: value.pepperoni,
+      ham:value.ham,
+      sausage:value.sausage,
+      onion:value.onion,
+      olives:value.olives,
+      tomato:value.tomato,
+      jalapeno:value.jalapeno
+    }
+  post(newPizza)
 }
 
 const change = (name, data) => {
@@ -71,8 +76,10 @@ const change = (name, data) => {
     <div className='top'>
       <nav>
         <h1>Lambda Eats</h1>
+        <div className='links'>
         <Link to='/'>Home</Link>
         <Link id='order-pizza' to='/pizza'>Order</Link>
+        </div>
       </nav>
 
       <Switch>

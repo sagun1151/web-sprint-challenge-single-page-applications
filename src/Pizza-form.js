@@ -6,10 +6,6 @@ import {
     Route,
     Switch
   } from 'react-router-dom';
-  
-
-
-
 
 export default function PizzaForm(props){
     const {
@@ -46,9 +42,9 @@ export default function PizzaForm(props){
                     />
                 </label>
 
-                <label>What size
+                <label>What size sauce <div>{errors.sauce}</div>
                     <select  id ='size-dropdown' value={values.size} name="size" onChange={onChange}>
-                        <option value="">-- Select a Role --</option>
+                        <option value="">-- Select a size --</option>
                         <option value="small">Small</option>
                         <option value="med">Medium</option>
                         <option value="large">Large</option>
@@ -131,7 +127,7 @@ export default function PizzaForm(props){
                         onChange={onChange}
                     />
                 </label>
-
+                <button>Order Up</button>
             </div>
         </form> 
         
