@@ -42,9 +42,9 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Implement the project on the main branch, committing changes regularly
+- [* ] Create a forked copy of this project
+- [ *] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [ *] Implement the project on the main branch, committing changes regularly
 - [ ] Push commits: `git push origin main`
 - [ ] PUSH EVERYTHING TO THE MAIN BRANCH
 
@@ -52,9 +52,9 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Your finished project must include all of the following requirements:
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable but must have an id of "order-pizza")
-- [ ] A order form that has a "/pizza" route and shows the form
-- [ ] A form with an id of "pizza-form"
+- [ /] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable but must have an id of "order-pizza")
+- [ /] A order form that has a "/pizza" route and shows the form
+- [ /] A form with an id of "pizza-form"
 - [ ] A name text input field with an id of "name-input"
 - [ ] Validation for name and the error message is "name must be at least 2 characters" (Use this exact error message to make sure tests pass) ::: VERY IMPORTANT TO USE THAT EXACT ERROR MESSAGE (casing included!)
 - [ ] A dropdown for pizza size with an id of "size-dropdown"
