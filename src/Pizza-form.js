@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { 
-    useParams, 
-    NavLink, 
-    useRouteMatch,
-    Route,
-    Switch
-  } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function PizzaForm(props){
     const {
@@ -30,7 +24,7 @@ export default function PizzaForm(props){
         <form id='pizza-form' onSubmit={onSubmit}>
             <h2>Order Here</h2>
             <div className="form list">
-            <div>{errors.name}</div>
+                <div>{errors.name}</div>
 
                 <label>Name
                     <input
@@ -42,7 +36,7 @@ export default function PizzaForm(props){
                     />
                 </label>
 
-                <label>What size sauce <div>{errors.sauce}</div>
+                <label>What size<div>{errors.size}</div>
                     <select  id ='size-dropdown' value={values.size} name="size" onChange={onChange}>
                         <option value="">-- Select a size --</option>
                         <option value="small">Small</option>
@@ -127,7 +121,9 @@ export default function PizzaForm(props){
                         onChange={onChange}
                     />
                 </label>
-                <button id='order-button'>Order Up</button>
+                <Link to='/pizza/order'>
+                <button id='order-button'>Add to Order</button>
+                </Link>
             </div>
         </form> 
         

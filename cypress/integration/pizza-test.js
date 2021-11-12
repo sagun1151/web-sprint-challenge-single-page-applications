@@ -3,9 +3,9 @@ describe('Pizza Test', () => {
         cy.visit('http://localhost:3000/')
     })
 
-    const order = () => cy.get('button[id="order-button]');
+    const order = () => cy.get('button[id="order-button"]');
     const name = () => cy.get('input[name=name]');
-    const size = () => cy.get('input[name=size]');
+    const size = () => cy.get('select[name=size]');
     const bacon = () => cy.get('input[name=bacon]');
     const pepperoni = () => cy.get('input[name=pepperoni]');
     const ham = () => cy.get('input[name=ham]');
@@ -21,7 +21,7 @@ describe('Pizza Test', () => {
     })
 
     it('its showing?', () => {
-        order().should('exist');
+        cy.contains('Order').click();
         name().should('exist');
         size().should('exist');
         bacon().should('exist');
@@ -33,6 +33,38 @@ describe('Pizza Test', () => {
         tomato().should('exist');
         jalapeno().should('exist');
         special().should('exist');
+        order().should('exist');
+    })
+
+    describe('testing order form', () => {
+        it('filling out and submitting form', () => {
+            cy.contains('Order').click();
+
+            name()
+                .should('have.value', '')
+                .type('sagun')
+                .should('have.value', 'sagun');
+            
+            size().select('Medium');
+            size().select('Small');
+            size().select('Large');
+
+            bacon().check();
+            pepperoni().check().check();
+            ham().check().check();
+            sausage().check().check();
+            onion().check();
+            olives().check().check();
+            tomato().check().check();
+            jalapeno().check();
+
+            special()
+                .should('have.value', '')
+                .type('leave at door')
+                .should('have.value', 'leave at door');
+            
+            order().click();
+        })
     })
     
 

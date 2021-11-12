@@ -4,6 +4,7 @@ import PizzaForm from "./Pizza-form";
 import schema from './formSchema'
 import * as yup from 'yup';
 import axios from "axios";
+import OrderPage from "./orderPage";
 
 const initialList = {
   name: '',
@@ -29,7 +30,7 @@ const initialErrors = {
 
 const App = () => {
 
-  const [pizzaList, stePizzaList] = useState([]);
+  const [pizzaList, setPizzaList] = useState([]);
   const [value, setValue] = useState(initialList)
   const [error, setError] = useState(initialErrors);
 
@@ -41,10 +42,10 @@ const App = () => {
 
 const submit = () => {
   const newPizza = {
-      name: value.name,
+      name: value.name.trim(),
       size: value.size,
       sauce:value.sauce,
-      special: value.special,
+      special: value.special.trim(),
       bacon: value.bacon,
       pepperoni: value.pepperoni,
       ham:value.ham,
@@ -56,10 +57,12 @@ const submit = () => {
     }
     axios.post('https://reqres.in/api/orders', newPizza)
     .then(res => {
-      stePizzaList([res.data, ...pizzaList]);
+      setPizzaList([res.data, ...pizzaList]);
     })
     .catch(err => console.error(err))
-    .finally(()=> setValue(initialList));
+    .finally(()=> setValue(initialList))
+
+    console.log('11',pizzaList);
 }
 
 const change = (name, data) => {
@@ -73,12 +76,15 @@ const change = (name, data) => {
       <nav>
         <h1>Lambda Eats</h1>
         <div className='links'>
-        <Link to='/'>Home</Link>
+        <Link id='Home' to='/'>Home</Link>
         <Link id='order-pizza' to='/pizza'>Order</Link>
         </div>
       </nav>
 
       <Switch>
+        <Route path="/pizza/order" >
+          <OrderPage key={value.id} details={value} />
+        </Route>
         <Route path ="/pizza">
           <PizzaForm 
             values={value}
