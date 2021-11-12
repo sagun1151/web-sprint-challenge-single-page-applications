@@ -6,95 +6,132 @@ import {
     Route,
     Switch
   } from 'react-router-dom';
-import * as yup from 'yup'
   
-  const initialList = {
-    name: '',
-    size: '',
-    sauce:'',
-    special: '',
-    bacon: '',
-    pepperoni: '',
-    ham:'',
-    sausage:'',
-    onion:'',
-    olives:'',
-    tomato:'',
-    jalapeno:''
+
+
+
+
+export default function PizzaForm(props){
+    const {
+        values,
+        submit,
+        change,
+        errors
+    } = props;
     
-}
-const initialErrors = {
-    name: '',
-    size: '',
-    sauce:'',
-    special: '',
-    bacon: '',
-    pepperoni: '',
-    ham:'',
-    sausage:'',
-    onion:'',
-    olives:'',
-    tomato:'',
-    jalapeno:''
-    
-}
-
-const schema =yup.object().shape({
-    name:yup
-        .string().trim().required('name must be at least 2 characters'),
-    
-})
-
-export default function PizzaForm(){
-
-    const [pizzaList, stePizzaList] = useState([]);
-    const [value, setValue] = useState(initialList)
-    const [error, setError] = useState(initialErrors);
-
-    const validate = (name, value) => {
-        yup.reach(schema, name).validate(value)
-            .then(() => setError({...error, [name]:value}))
-            .catch(err => setError({...error, [name]: err.errors[0]}))
-    }
-    
-    const submit = () => {
-
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
     }
 
-    const change = evt => {
+    const onChange = evt => {
         const { name, value, checked, type } = evt.target;
         const realValue = type === 'checkbox' ? checked : value;
-        validate( name, realValue);
-        setValue({...value , [name]: realValue});
+        change(name, realValue)
     }
 
     return (
-        <form id='pizza-form' onSubmit={submit}>
+        <form id='pizza-form' onSubmit={onSubmit}>
             <h2>Order Here</h2>
             <div className="form list">
+            <div>{errors.name}</div>
 
-                <label>
+                <label>Name
                     <input
-                        id='name-input' 
+                        id='name-input'
+                        type='text' 
                         name='name'
-                        value={value.name}
-                        type='text'
-                        onChange={change}
+                        value={values.name}
+                        onChange={onChange}
                     />
                 </label>
 
-                <label>
-                    <select value={value.size} name="size" onChange={change}>
+                <label>What size
+                    <select  id ='size-dropdown' value={values.size} name="size" onChange={onChange}>
                         <option value="">-- Select a Role --</option>
-                        <option value="Student">Student</option>
-                        <option value="Instructor">Instructor</option>
-                        <option value="Alumni">Alumni</option>
+                        <option value="small">Small</option>
+                        <option value="med">Medium</option>
+                        <option value="large">Large</option>
                     </select>
                 </label>
 
-
-
+                <div>
+                    <label>Bacon
+                        <input 
+                            type='checkbox'
+                            name='bacon'
+                            onChange={onChange}
+                            checked={values.bacon}
+                        />
+                    </label>
+                    <label>Pepperoni
+                        <input 
+                            type='checkbox'
+                            name='pepperoni'
+                            onChange={onChange}
+                            checked={values.pepperoni}
+                        />
+                    </label>
+                    <label>Ham
+                        <input 
+                            type='checkbox'
+                            name='ham'
+                            onChange={onChange}
+                            checked={values.ham}
+                        />
+                    </label>
+                    <label>Sausage
+                        <input 
+                            type='checkbox'
+                            name='sausage'
+                            onChange={onChange}
+                            checked={values.sausage}
+                        />
+                    </label>
+                    <label>Onion
+                        <input 
+                            type='checkbox'
+                            name='onion'
+                            onChange={onChange}
+                            checked={values.onion}
+                        />
+                    </label>
+                    <label>Olives
+                        <input 
+                            type='checkbox'
+                            name='olives'
+                            onChange={onChange}
+                            checked={values.olives}
+                        />
+                    </label>
+                    <label>Tomato
+                        <input 
+                            type='checkbox'
+                            name='tomato'
+                            onChange={onChange}
+                            checked={values.tomato}
+                        />
+                    </label>
+                    <label>Jalapeno
+                        <input 
+                            type='checkbox'
+                            name='jalapeno'
+                            onChange={onChange}
+                            checked={values.jalapeno}
+                        />
+                    </label>
+                </div>
                 
+                <label>Special Instructions
+                    <input
+                        id='special-text'
+                        type='text'
+                        name='special'
+                        value={values.special}
+                        onChange={onChange}
+                    />
+                </label>
+
             </div>
         </form> 
         
