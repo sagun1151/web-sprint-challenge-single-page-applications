@@ -1,5 +1,5 @@
 describe('Pizza Test', () => {
-    beforeEach(() => {
+    before(() => {
         cy.visit('http://localhost:3000/')
     })
 
@@ -37,7 +37,8 @@ describe('Pizza Test', () => {
     })
 
     describe('testing order form', () => {
-        it('filling out and submitting form', () => {
+
+        it('filling out order form', () => {
             cy.contains('Order').click();
 
             name()
@@ -50,23 +51,27 @@ describe('Pizza Test', () => {
             size().select('Large');
 
             bacon().check();
-            pepperoni().check().check();
-            ham().check().check();
-            sausage().check().check();
+            pepperoni().check().uncheck();
+            ham().check().uncheck();
+            sausage().check().uncheck();
             onion().check();
-            olives().check().check();
-            tomato().check().check();
-            jalapeno().check();
+            olives().check().uncheck();
+            tomato().check().uncheck();
+            jalapeno().check().uncheck();
 
             special()
                 .should('have.value', '')
                 .type('leave at door')
                 .should('have.value', 'leave at door');
-            
+            })    
+        
+        it('clicking order and making sure info is showing', () => {
             order().click();
-        })
+
+            cy.contains('Name:').should('exist');
+            cy.contains('Size:').should('exist');
+            cy.contains('Toppings:').should('exist');
+            cy.contains('Special Instructions:').should('exist');
+        }) 
     })
-    
-
-
 })

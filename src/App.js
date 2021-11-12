@@ -29,7 +29,6 @@ const initialErrors = {
 }
 
 const App = () => {
-
   const [pizzaList, setPizzaList] = useState([]);
   const [value, setValue] = useState(initialList)
   const [error, setError] = useState(initialErrors);
@@ -38,10 +37,10 @@ const App = () => {
     yup.reach(schema, name).validate(value)
         .then(() => setError({...error, [name]:''}))
         .catch(err => setError({...error, [name]: err.errors[0]}))
-}
+  }
 
-const submit = () => {
-  const newPizza = {
+  const submit = () => {
+    const newPizza = {
       name: value.name.trim(),
       size: value.size,
       sauce:value.sauce,
@@ -56,19 +55,17 @@ const submit = () => {
       jalapeno:value.jalapeno
     }
     axios.post('https://reqres.in/api/orders', newPizza)
-    .then(res => {
-      setPizzaList([res.data, ...pizzaList]);
-    })
-    .catch(err => console.error(err))
-    .finally(()=> setValue(initialList))
+      .then(res => {
+        setPizzaList([res.data, ...pizzaList]);
+      })
+      .catch(err => console.error(err))
+      .finally(()=> setValue(initialList))
+  }
 
-    console.log('11',pizzaList);
-}
-
-const change = (name, data) => {
+  const change = (name, data) => {
     validate(name, data);
     setValue({...value , [name]: data});
-}
+  }
 
 
   return (
@@ -76,8 +73,8 @@ const change = (name, data) => {
       <nav>
         <h1>Lambda Eats</h1>
         <div className='links'>
-        <Link id='Home' to='/'>Home</Link>
-        <Link id='order-pizza' to='/pizza'>Order</Link>
+          <Link id='Home' to='/'>Home</Link>
+          <Link id='order-pizza' to='/pizza'>Order</Link>
         </div>
       </nav>
 
@@ -92,12 +89,10 @@ const change = (name, data) => {
             change={change}
             errors={error}
           />
-        </Route>
-        
+        </Route> 
       </Switch>
-      
-      
     </div>
   );
 };
+
 export default App;

@@ -122,13 +122,9 @@ export default function PizzaForm(props){
                     />
                 </label>
                 <Link to='/pizza/order'>
-                <button id='order-button'>Add to Order</button>
+                    <button id='order-button'>Add to Order</button>
                 </Link>
             </div>
         </form> 
-        
-
     )
-
-
 }  
