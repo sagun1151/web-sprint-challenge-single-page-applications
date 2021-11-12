@@ -3,7 +3,7 @@ describe('Pizza Test', () => {
         cy.visit('http://localhost:3000/')
     })
 
-    const order = () => cy.get('button[id="order]');
+    const order = () => cy.get('button[id="order-button]');
     const name = () => cy.get('input[name=name]');
     const size = () => cy.get('input[name=size]');
     const bacon = () => cy.get('input[name=bacon]');
